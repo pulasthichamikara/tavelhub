@@ -11,3 +11,20 @@ body {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+input[type='email'],
+input[type='password'],
+input[type='text'] {
+  @apply w-full border border-2 px-3 py-2 rounded-full w-full border-pri;
+}
+
+button {
+  @apply px-3 py-2 rounded-full text-white shadow;
+}
+.btn-primary {
+  @apply bg-pri;
+}
+
+h1 {
+  @apply text-5xl font-bold;
+}
