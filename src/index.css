@@ -14,8 +14,9 @@ body {
 
 input[type='email'],
 input[type='password'],
-input[type='text'] {
-  @apply w-full border border-2 px-3 py-2 rounded-full w-full border-pri;
+input[type='text'],
+textarea {
+  @apply w-full border border-2 px-3 py-2 rounded-full w-full border-gray-300;
 }
 
 button,
@@ -28,4 +29,8 @@ button,
 
 h1 {
   @apply text-5xl font-bold;
+}
+
+.formgroup {
+  @apply mb-4;
 }

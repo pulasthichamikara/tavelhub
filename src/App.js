@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Header from './components/Header';
 import Register from './pages/Register';
 import Account from './pages/Account';
+import AddEditAccomadation from './components/account/AddEditAccomadation';
 
 function App() {
   return (
@@ -14,6 +15,10 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="account/:page" element={<Account />} />
+        <Route
+          path="account/accomadations/add"
+          element={<AddEditAccomadation />}
+        />
         <Route path="/*" element={<Home />} />
       </Routes>
     </BrowserRouter>
