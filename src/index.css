@@ -18,11 +18,12 @@ input[type='text'] {
   @apply w-full border border-2 px-3 py-2 rounded-full w-full border-pri;
 }
 
-button {
-  @apply px-3 py-2 rounded-full text-white shadow;
+button,
+.btn {
+  @apply px-3 py-2 rounded-full shadow bg-gray-300;
 }
 .btn-primary {
-  @apply bg-pri;
+  @apply bg-pri  text-white;
 }
 
 h1 {
