@@ -22,10 +22,9 @@ export default function Header() {
           <IoSearchCircleSharp className=" text-pri text-4xl" />
         </div>
 
-        <div className="flex gap-2 items-center justify-center border rounded-full border-gray-300 px-2 pl-3  h-[40px]">
-          <GiHamburgerMenu />
+        <div className="flex gap-2 items-center justify-center border rounded-full border-gray-300 px-2  h-[40px]">
           <FaUserCircle className="text-2xl text-gray-500 " />
-          {!!user && (
+          {!!user ? (
             <span className=" text-li ">
               <Link
                 to="/account/profile
@@ -34,7 +33,14 @@ export default function Header() {
                 {user.name}
               </Link>
             </span>
-          )}
+          ):  <span className=" text-li ">
+          <Link
+            to="/login
+          "
+          >
+            Login
+          </Link>
+        </span>}
         </div>
       </div>
     </header>

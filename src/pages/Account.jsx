@@ -1,13 +1,16 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import Accomodations from '../components/account/Accomodations';
 import Booking from '../components/account/Booking';
 import Profile from '../components/account/Profile';
+import { UserContex } from '../contex/UserContex';
 
 export default function Account() {
   const { page } = useParams();
   const className = 'btn';
   let content = null;
+  const { user } = useContext(UserContex);
   switch (page) {
     case 'profile':
       content = <Profile />;
@@ -24,6 +27,7 @@ export default function Account() {
 
   return (
     <div className="container">
+      {!user && <Navigate to="/login" />}
       <div className="flex  gap-4 m-auto bg-red my-5 w-full justify-center">
         <Link
           to={'/account/profile'}

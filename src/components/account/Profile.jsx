@@ -1,5 +1,13 @@
 import React from 'react';
+import { useContext } from 'react';
+import { UserContex } from '../../contex/UserContex';
 
 export default function Profile() {
-  return <div>Profile</div>;
+  const { logOut } = useContext(UserContex);
+
+  return (
+    <div>
+      <button onClick={() => logOut()}>Logout</button>
+    </div>
+  );
 }
