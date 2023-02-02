@@ -1,16 +1,56 @@
+import axios from 'axios';
 import React from 'react';
-import {
-  HiCloudArrowUp,
-  HiDocumentPlus,
-  HiOutlineArrowLeft,
-  HiPlus,
-} from 'react-icons/hi2';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { HiOutlineArrowLeft, HiPlus } from 'react-icons/hi2';
+
+import { json, Link, useNavigate } from 'react-router-dom';
 import FormWrapper from '../FormWrapper';
+import Loader from '../Loader';
+import Facilities from './Facilities';
+import ImageUploader from './ImageUploader';
 
 export default function AddEditAccomadation() {
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+
+  const [perks, setperks] = useState([]);
+  const [description, setDescription] = useState('');
+  const [checkin, setCheckin] = useState('');
+  const [checkOut, setCheckOut] = useState('');
+  const [maxGuests, setMaxGuests] = useState('');
+  const backendPath = process.env.REACT_APP_BACKEND_BASE;
+  const [uploaderdImgs, setUploaderdImgs] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [errs, setErrs] = useState([]);
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    await axios
+      .post('/location', {
+        name,
+        address,
+        perks,
+        description,
+        checkin,
+        checkOut,
+        maxGuests,
+        uploaderdImgs,
+      })
+
+      .then((res) => {
+        console.log(res);
+        setLoading(false);
+        navigate('/account/accomadations/');
+      })
+      .catch((err) => {
+        console.log('errrrr', err);
+        setLoading(false);
+      });
+  };
   return (
     <div className="container">
+      {loading && <Loader />}
       <div className="flex w-full justify-between mt-4 border-b pb-4">
         <Link to="/account/accomadations/">
           <div className="btn inline-flex btn-primary ">
@@ -25,82 +65,72 @@ export default function AddEditAccomadation() {
       </div>
 
       <FormWrapper>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="formgroup">
             <label>Title</label>
             <input
               type="text"
               placeholder="title, for example: my lovely apartment"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className="formgroup">
             <label>Address</label>
-            <input type="text" placeholder="address of the accomadation" />
+            <input
+              type="text"
+              placeholder="address of the accomadation"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
           </div>
-          <div className="formgroup flex justify-center items-end gap-4">
-            <div className="flex-1">
-              <label>Photos</label>
-              <input type="text" placeholder="Add using url" />
-            </div>
-            <button className="text-2xl rounded flex justify-center ">
-              <HiPlus />
-            </button>
-          </div>
-          <div className="formgroup grid grid-cols-3 gap-4 ">
-            {/*  <input type="text" placeholder="Add using url" /> */}
-            <button className="rounded p-8 flex justify-center gap-4">
-              <HiCloudArrowUp className="text-2xl" /> <span>upload</span>
-            </button>
-          </div>
+
+          {/* image uploader */}
+          <ImageUploader
+            uploaderdImgs={uploaderdImgs}
+            onChange={setUploaderdImgs}
+            refeshMe={setLoading}
+          />
+
+          {/* description */}
           <div className="formgroup">
             <label>Description</label>
             <textarea
               className="rounded"
               placeholder="Say somthing about accomadeation"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
           </div>
-          <div className="formgroup">
-            <label>Facilities</label>
-            <div className="grid grid-cols-3 gap-4">
-              <label className="border p-4 flex gap-4 justify-center rounded">
-                <span>Wifi</span>
-                <input type="checkbox" />
-              </label>
-              <label className="border p-4 flex gap-4 justify-center rounded">
-                <span>TV</span>
-                <input type="checkbox" />
-              </label>
-              <label className="border p-4 flex gap-4 justify-center rounded">
-                <span>Parking</span>
-                <input type="checkbox" />
-              </label>
-              <label className="border p-4 flex gap-4 justify-center rounded">
-                <span>Pets allowed</span>
-                <input type="checkbox" />
-              </label>
-              <label className="border p-4 flex gap-4 justify-center rounded">
-                <span>Pool</span>
-                <input type="checkbox" />
-              </label>
-              <label className="border p-4 flex gap-4 justify-center rounded">
-                <span>Kitchen</span>
-                <input type="checkbox" />
-              </label>
-            </div>
-          </div>
 
+          <Facilities onChange={setperks} perks={perks} />
+          {JSON.stringify(perks)}
           <div className="formgroup grid grid-cols-3 gap-4">
             <div>
               <label>Chek in time </label>
-              <input type="text" placeholder="4.53" />
+              <input
+                type="text"
+                placeholder="4.53"
+                value={checkin}
+                onChange={(e) => setCheckin(e.target.value)}
+              />
             </div>
             <div>
               <label>Chek out time </label>
-              <input type="text" placeholder="4.53" />
+              <input
+                type="text"
+                placeholder="4.53"
+                value={checkOut}
+                onChange={(e) => setCheckOut(e.target.value)}
+              />
             </div>
             <div>
               <label>Max number of guests </label>
-              <input type="text" />
+              <input
+                type="number"
+                value={maxGuests}
+                onChange={(e) => setMaxGuests(e.target.value)}
+              />
             </div>
           </div>
           <button type="submit" className="btn btn-primary w-full my-4">

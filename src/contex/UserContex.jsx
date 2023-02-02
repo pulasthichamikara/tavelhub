@@ -7,7 +7,7 @@ export const UserContex = createContext({});
 export function UserContexProvider({ children }) {
   const userDataLocal = localStorage.getItem('userdata');
   const [user, setUser] = useState(
-    userDataLocal.length ? JSON.parse(userDataLocal) : null
+    userDataLocal?.length ? JSON.parse(userDataLocal) : null
   );
   const logOut = () => {
     localStorage.setItem('userdata', '');
