@@ -9,6 +9,7 @@ import AddEditAccomadation from './components/account/AddEditAccomadation';
 import axios from 'axios';
 import { useContext } from 'react';
 import { UserContex } from './contex/UserContex';
+import SinglePage from './pages/SinglePage';
 
 function App() {
   const { user } = useContext(UserContex);
@@ -29,8 +30,13 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="account/:page" element={<Account />} />
+        <Route path="room/:id" element={<SinglePage />} />
         <Route
           path="account/accomadations/add"
+          element={<AddEditAccomadation />}
+        />
+        <Route
+          path="account/accomadations/edit/:id"
           element={<AddEditAccomadation />}
         />
         <Route path="/*" element={<Home />} />

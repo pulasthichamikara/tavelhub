@@ -2,15 +2,15 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { HiCloudArrowUp, HiPlus } from 'react-icons/hi2';
 
-export default function ImageUploader({ uploaderdImgs, onChange, refeshMe }) {
+export default function ImageUploader({ uploaderdImgs, onChange }) {
   const backendPath = process.env.REACT_APP_BACKEND_BASE;
-  refeshMe(false);
+
   const [photos, setPhotos] = useState([]);
   const [photosUrl, setPhotosUrl] = useState([]);
   const imageUploadFromUrl = async (e) => {
     e.preventDefault();
     //__dirname + '/public'
-    refeshMe(true);
+
     await axios
       .post(`/uploaded-by-link`, { photosUrl })
 
@@ -18,7 +18,6 @@ export default function ImageUploader({ uploaderdImgs, onChange, refeshMe }) {
         console.log(res.data);
         onChange([...uploaderdImgs, res.data]);
         setPhotosUrl('');
-        refeshMe(false);
       })
       .catch((err) => {
         console.log(err);
@@ -50,8 +49,8 @@ export default function ImageUploader({ uploaderdImgs, onChange, refeshMe }) {
         {/*  <input type="text" placeholder="Add using url" /> */}
 
         {uploaderdImgs.length > 0 &&
-          uploaderdImgs.map((img, index) => (
-            <div key={index}>
+          uploaderdImgs.map((img) => (
+            <div key={img}>
               <img src={`${backendPath}/uploads/${img}`} alt={img} />
             </div>
           ))}

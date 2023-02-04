@@ -1,5 +1,10 @@
 import React from 'react';
+import GridAccomadation from '../components/GridAccomadation';
 
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <div className="">
+      <GridAccomadation />
+    </div>
+  );
 }

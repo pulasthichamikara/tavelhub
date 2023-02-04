@@ -1,15 +1,16 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { HiOutlineArrowLeft, HiPlus } from 'react-icons/hi2';
 
-import { json, Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import FormWrapper from '../FormWrapper';
-import Loader from '../Loader';
 import Facilities from './Facilities';
 import ImageUploader from './ImageUploader';
+import useLoading from '../utils/useLoading';
 
 export default function AddEditAccomadation() {
+  const [LoadBul, showLoading, hideLoading] = useLoading();
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
 
@@ -18,39 +19,83 @@ export default function AddEditAccomadation() {
   const [checkin, setCheckin] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [maxGuests, setMaxGuests] = useState('');
-  const backendPath = process.env.REACT_APP_BACKEND_BASE;
+  const [perPrice, setPerPrice] = useState('');
   const [uploaderdImgs, setUploaderdImgs] = useState([]);
-  const [loading, setLoading] = useState(false);
+
   const [errs, setErrs] = useState([]);
+  const { id } = useParams();
+
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    await axios
-      .post('/location', {
-        name,
-        address,
-        perks,
-        description,
-        checkin,
-        checkOut,
-        maxGuests,
-        uploaderdImgs,
-      })
 
-      .then((res) => {
-        console.log(res);
-        setLoading(false);
-        navigate('/account/accomadations/');
-      })
-      .catch((err) => {
-        console.log('errrrr', err);
-        setLoading(false);
-      });
+    const data = {
+      name,
+      address,
+      perks,
+      description,
+      checkin,
+      checkOut,
+      maxGuests,
+      uploaderdImgs,
+      perPrice,
+    };
+    if (id) {
+      showLoading();
+      await axios
+        .put(`/location/${id}`, data)
+        .then((res) => {
+          console.log(res);
+          hideLoading();
+          navigate('/account/accomadations/');
+        })
+        .catch((err) => {
+          hideLoading();
+          console.log('errrrr', err);
+        });
+    } else {
+      await axios
+        .post('/location', data)
+        .then((res) => {
+          console.log(res);
+
+          navigate('/account/accomadations/');
+        })
+        .catch((err) => {
+          console.log('errrrr', err);
+        });
+    }
   };
+
+  useEffect(() => {
+    if (id) {
+      showLoading();
+      axios
+        .get(`/location/${id}`)
+        .then((response) => {
+          const { location } = response.data;
+          setName(location.name);
+          setAddress(location.address);
+          setperks(location.perks);
+          setDescription(location.description);
+          setCheckin(location.checkin);
+          setCheckOut(location.checkOut);
+          setMaxGuests(location.maxGuests);
+          setUploaderdImgs(location.images);
+          setPerPrice(location.perPrice);
+          hideLoading();
+        })
+        .catch((err) => {
+          console.log(err);
+          hideLoading();
+        });
+    }
+  }, [id]);
+
   return (
     <div className="container">
-      {loading && <Loader />}
+      <LoadBul />
       <div className="flex w-full justify-between mt-4 border-b pb-4">
         <Link to="/account/accomadations/">
           <div className="btn inline-flex btn-primary ">
@@ -89,14 +134,13 @@ export default function AddEditAccomadation() {
           <ImageUploader
             uploaderdImgs={uploaderdImgs}
             onChange={setUploaderdImgs}
-            refeshMe={setLoading}
           />
 
           {/* description */}
           <div className="formgroup">
             <label>Description</label>
             <textarea
-              className="rounded"
+              className="rounded h-40"
               placeholder="Say somthing about accomadeation"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -104,8 +148,8 @@ export default function AddEditAccomadation() {
           </div>
 
           <Facilities onChange={setperks} perks={perks} />
-          {JSON.stringify(perks)}
-          <div className="formgroup grid grid-cols-3 gap-4">
+
+          <div className="formgroup grid grid-cols-2 gap-4">
             <div>
               <label>Chek in time </label>
               <input
@@ -130,6 +174,14 @@ export default function AddEditAccomadation() {
                 type="number"
                 value={maxGuests}
                 onChange={(e) => setMaxGuests(e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Price per person </label>
+              <input
+                type="number"
+                value={perPrice}
+                onChange={(e) => setPerPrice(e.target.value)}
               />
             </div>
           </div>

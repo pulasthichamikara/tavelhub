@@ -49,7 +49,10 @@ export default function Facilities({ onChange, perks }) {
 
       <div className="grid grid-cols-3 gap-4">
         {fasilities.map((fs) => (
-          <label className="border p-4 flex gap-4 justify-center items-center rounded">
+          <label
+            key={fs.item}
+            className="border p-4 flex gap-4 justify-center items-center rounded"
+          >
             {fs.icon}
             <span> {fs.title}</span>
             <input

@@ -8,21 +8,40 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+h {
+  @apply font-bold;
+}
+h1 {
+  @apply text-3xl;
+}
+
+h2 {
+  @apply text-2xl;
+}
+
+h3 {
+  @apply text-xl;
+}
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+label {
+  @apply text-gray-600 block mb-1;
 }
 
 input[type='email'],
 input[type='password'],
 input[type='number'],
 input[type='text'],
+input[type='date'],
 textarea {
   @apply w-full border border-2 px-3 py-2 rounded-full w-full border-gray-300;
 }
 
 button,
 .btn {
-  @apply px-3 py-2 rounded-full shadow bg-gray-300;
+  @apply px-3 py-2 rounded-full shadow bg-gray-300 cursor-pointer text-center font-semibold;
 }
 .btn-primary {
   @apply bg-pri  text-white;
@@ -34,4 +53,15 @@ h1 {
 
 .formgroup {
   @apply mb-4;
+}
+
+hr {
+  @apply my-4;
+}
+.rdp-day_selected,
+.rdp-day_selected:focus-visible,
+.rdp-day_selected:hover {
+  color: white;
+  opacity: 1;
+  background-color: #000000 !important;
 }
