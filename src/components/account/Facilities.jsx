@@ -51,7 +51,7 @@ export default function Facilities({ onChange, perks }) {
         {fasilities.map((fs) => (
           <label
             key={fs.item}
-            className="border p-4 flex gap-4 justify-center items-center rounded"
+            className="border p-4 flex gap-4 justify-center items-center"
           >
             {fs.icon}
             <span> {fs.title}</span>

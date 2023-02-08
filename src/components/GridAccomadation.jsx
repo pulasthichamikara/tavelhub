@@ -15,7 +15,7 @@ export default function GridAccomadation() {
       .get('/location/allaccomadations')
       .then((respons) => {
         const { allLocations } = respons.data;
-        console.log(allLocations);
+
         setAccamadatios(allLocations);
         hideLoading();
       })

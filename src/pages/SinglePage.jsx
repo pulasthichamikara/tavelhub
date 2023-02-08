@@ -5,15 +5,16 @@ import { HiOutlineMapPin } from 'react-icons/hi2';
 
 import { useParams } from 'react-router-dom';
 import Booking from '../components/Booking';
+import Facilites from '../components/Facilites';
 import Photos from '../components/Photos';
 import useLoading from '../components/utils/useLoading';
 
 export default function SinglePage() {
   const { id } = useParams();
   const [LoadBul, showLoading, hideLoading] = useLoading();
-  const backendPath = process.env.REACT_APP_BACKEND_BASE;
-  const [accomadation, setAccomadation] = useState({});
 
+  const [accomadation, setAccomadation] = useState({});
+  console.log('accomadation', accomadation);
   useEffect(() => {
     if (id) {
       showLoading();
@@ -32,9 +33,9 @@ export default function SinglePage() {
   }, [id]);
 
   return (
-    <div className=" bg-gray-100 py-8 h-full mx-h-[100px]">
+    <div className="  py-8 h-full mx-h-[100px]">
       <LoadBul />
-      {console.log(accomadation)}
+      {/*    {console.log(accomadation)} */}
       <div className="container">
         <h1 className="text-3xl">{accomadation.name}</h1>
         <span className="flex gap2 items-center text-xl">
@@ -62,10 +63,19 @@ export default function SinglePage() {
           <hr />
           <h3 className="font-semibold mb-2">Description</h3>
           <div className="text-lg">{accomadation.description}</div>
+          <hr />
+
+          <div>
+            {accomadation.perks && <Facilites perks={accomadation.perks} />}
+          </div>
         </div>
 
-        <div className="max-w-[360px]">
-          <Booking perPrice={accomadation.perPrice} />
+        <div className="">
+          <Booking
+            perPrice={accomadation.perPrice}
+            owner={accomadation.owner}
+            place={accomadation._id}
+          />
         </div>
       </div>
     </div>

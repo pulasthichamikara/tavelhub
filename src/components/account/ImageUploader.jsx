@@ -15,7 +15,6 @@ export default function ImageUploader({ uploaderdImgs, onChange }) {
       .post(`/uploaded-by-link`, { photosUrl })
 
       .then((res) => {
-        console.log(res.data);
         onChange([...uploaderdImgs, res.data]);
         setPhotosUrl('');
       })

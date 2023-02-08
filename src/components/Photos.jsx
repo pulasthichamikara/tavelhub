@@ -43,7 +43,7 @@ export default function Photos({ accomadation }) {
         </div>
         {/* gallery */}
         {showImgs && (
-          <div className="absolute top-0 bg-black w-full p-10">
+          <div className="absolute top-0 bg-black w-full p-10  z-50 ">
             <div className="container w-full auto relative">
               <span
                 className="fixed top-8 right-8 btn z-100 text-2xl shadow"

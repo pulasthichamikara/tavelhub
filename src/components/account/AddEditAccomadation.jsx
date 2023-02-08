@@ -46,7 +46,6 @@ export default function AddEditAccomadation() {
       await axios
         .put(`/location/${id}`, data)
         .then((res) => {
-          console.log(res);
           hideLoading();
           navigate('/account/accomadations/');
         })
@@ -58,8 +57,6 @@ export default function AddEditAccomadation() {
       await axios
         .post('/location', data)
         .then((res) => {
-          console.log(res);
-
           navigate('/account/accomadations/');
         })
         .catch((err) => {
