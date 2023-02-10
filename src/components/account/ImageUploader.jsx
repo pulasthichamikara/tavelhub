@@ -1,8 +1,14 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { HiCloudArrowUp, HiPlus } from 'react-icons/hi2';
+import { FiTrash2 } from 'react-icons/fi';
 
-export default function ImageUploader({ uploaderdImgs, onChange }) {
+export default function ImageUploader({
+  uploaderdImgs,
+  setUploaderdImgs,
+  deletedImages,
+  setDeletedImages,
+}) {
   const backendPath = process.env.REACT_APP_BACKEND_BASE;
 
   const [photos, setPhotos] = useState([]);
@@ -12,21 +18,23 @@ export default function ImageUploader({ uploaderdImgs, onChange }) {
     //__dirname + '/public'
 
     await axios
-      .post(`/uploaded-by-link`, { photosUrl })
+      .post(`/img-uploaded-by-link`, { photosUrl })
 
       .then((res) => {
-        onChange([...uploaderdImgs, res.data]);
+        setUploaderdImgs([...uploaderdImgs, res.data]);
         setPhotosUrl('');
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  const deletImage = async (img) => {
+    setUploaderdImgs(uploaderdImgs.filter((item) => item !== img));
+    setDeletedImages([...deletedImages, img]);
+  };
+
   return (
     <div>
-      {' '}
-      {/* image upload */}
-      {/* image upload url */}
       <div className="formgroup flex justify-center items-end gap-4">
         <div className="flex-1">
           <label>Photos</label>
@@ -49,13 +57,17 @@ export default function ImageUploader({ uploaderdImgs, onChange }) {
 
         {uploaderdImgs.length > 0 &&
           uploaderdImgs.map((img) => (
-            <div key={img}>
+            <div key={img} className="relative">
               <img src={`${backendPath}/uploads/${img}`} alt={img} />
+              <FiTrash2
+                className="text-3xl bg-white shadow p-2 w-[50px] h-[40px]  hover:bg-pri hover:text-white cursor-pointer absolute right-1 top-1"
+                onClick={() => deletImage(img)}
+              />
             </div>
           ))}
-        <button className="rounded p-8 flex justify-center gap-4">
+        {/*  <button className="rounded p-8 flex justify-center gap-4">
           <HiCloudArrowUp className="text-2xl" /> <span>upload</span>
-        </button>
+        </button> */}
       </div>
     </div>
   );

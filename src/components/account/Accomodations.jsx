@@ -25,6 +25,22 @@ export default function Accomodations() {
         hideLoading();
       });
   }, []);
+
+  const deleteItem = (id) => {
+    showLoading();
+    axios
+      .delete('/location/myaccomadations', { data: { id } })
+      .then((respons) => {
+        setAccomadations(
+          accomadations.filter((item) => item._id !== respons.data)
+        );
+        hideLoading();
+      })
+      .catch((err) => {
+        console.log('respons', err);
+        hideLoading();
+      });
+  };
   return (
     <div>
       <LoadBul />
@@ -59,7 +75,12 @@ export default function Accomodations() {
                   <Link to={`/account/accomadations/edit/${item._id}`}>
                     <FiEdit className="text-3xl bg-white shadow p-2 w-[50px] h-[40px] hover:bg-pri hover:text-white transition" />
                   </Link>
-                  <FiTrash2 className="text-3xl bg-white shadow p-2 w-[50px] h-[40px]  hover:bg-pri hover:text-white cursor-pointer" />
+                  <FiTrash2
+                    onClick={() => {
+                      deleteItem(item._id);
+                    }}
+                    className=" text-3xl bg-white shadow p-2 w-[50px] h-[40px]  hover:bg-pri hover:text-white cursor-pointer"
+                  />
                 </div>
               </div>
             </div>

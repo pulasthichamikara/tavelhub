@@ -21,6 +21,7 @@ export default function AddEditAccomadation() {
   const [maxGuests, setMaxGuests] = useState('');
   const [perPrice, setPerPrice] = useState('');
   const [uploaderdImgs, setUploaderdImgs] = useState([]);
+  const [deletedImages, setDeletedImages] = useState([]);
 
   const [errs, setErrs] = useState([]);
   const { id } = useParams();
@@ -40,6 +41,7 @@ export default function AddEditAccomadation() {
       maxGuests,
       uploaderdImgs,
       perPrice,
+      deletedImages,
     };
     if (id) {
       showLoading();
@@ -130,7 +132,9 @@ export default function AddEditAccomadation() {
           {/* image uploader */}
           <ImageUploader
             uploaderdImgs={uploaderdImgs}
-            onChange={setUploaderdImgs}
+            deletedImages={deletedImages}
+            setUploaderdImgs={setUploaderdImgs}
+            setDeletedImages={setDeletedImages}
           />
 
           {/* description */}
