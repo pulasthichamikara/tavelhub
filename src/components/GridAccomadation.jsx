@@ -28,7 +28,7 @@ export default function GridAccomadation() {
   return (
     <div className="mt-6">
       <div className="container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-6 gap-y-8">
-        {accamadatios.length > 0 &&
+        {accamadatios?.length > 0 &&
           accamadatios.map((item) => <Thumbnail item={item} key={item._id} />)}
       </div>
     </div>

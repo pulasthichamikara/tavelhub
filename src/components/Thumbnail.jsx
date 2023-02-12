@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import XImg from '../XImg';
 const backendPath = process.env.REACT_APP_BACKEND_BASE;
 export default function Thumbnail({ item }) {
   return (
@@ -7,8 +8,8 @@ export default function Thumbnail({ item }) {
       <Link to={`/room/${item._id}`}>
         <div className="bg-gray-500 rounded-2xl aspect-square object-cover">
           {item.images[0] && (
-            <img
-              src={`${backendPath}/uploads/${item.images[0]}`}
+            <XImg
+              src={item.images[0]}
               alt={item.name}
               className="rounded-2xl aspect-square object-cover"
             />

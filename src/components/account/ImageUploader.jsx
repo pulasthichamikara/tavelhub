@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { HiCloudArrowUp, HiPlus } from 'react-icons/hi2';
+import { HiPlus } from 'react-icons/hi2';
 import { FiTrash2 } from 'react-icons/fi';
+import XImg from '../../XImg';
+import useLoading from '../utils/useLoading';
 
 export default function ImageUploader({
   uploaderdImgs,
@@ -9,23 +11,24 @@ export default function ImageUploader({
   deletedImages,
   setDeletedImages,
 }) {
-  const backendPath = process.env.REACT_APP_BACKEND_BASE;
-
-  const [photos, setPhotos] = useState([]);
   const [photosUrl, setPhotosUrl] = useState([]);
+  const [LoadBul, showLoading, hideLoading] = useLoading();
   const imageUploadFromUrl = async (e) => {
     e.preventDefault();
-    //__dirname + '/public'
-
+    showLoading();
     await axios
       .post(`/img-uploaded-by-link`, { photosUrl })
-
       .then((res) => {
-        setUploaderdImgs([...uploaderdImgs, res.data]);
-        setPhotosUrl('');
+        setTimeout(() => {
+          setUploaderdImgs([...uploaderdImgs, res.data]);
+        }, 3000);
+
+        hideLoading();
       })
       .catch((err) => {
         console.log(err);
+        hideLoading();
+        setPhotosUrl('');
       });
   };
   const deletImage = async (img) => {
@@ -52,13 +55,15 @@ export default function ImageUploader({
           <HiPlus />
         </button>
       </div>
-      <div className="formgroup grid grid-cols-3 gap-4 ">
+      <div className="formgroup grid grid-cols-3 gap-4 relative">
+        <LoadBul />
         {/*  <input type="text" placeholder="Add using url" /> */}
 
         {uploaderdImgs.length > 0 &&
           uploaderdImgs.map((img) => (
             <div key={img} className="relative">
-              <img src={`${backendPath}/uploads/${img}`} alt={img} />
+              <XImg src={img} />
+
               <FiTrash2
                 className="text-3xl bg-white shadow p-2 w-[50px] h-[40px]  hover:bg-pri hover:text-white cursor-pointer absolute right-1 top-1"
                 onClick={() => deletImage(img)}

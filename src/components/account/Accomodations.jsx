@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 import { FiEdit } from 'react-icons/fi';
 import { FiTrash2 } from 'react-icons/fi';
 import useLoading from '../utils/useLoading';
+import XImg from '../../XImg';
 
-const backendPath = process.env.REACT_APP_BACKEND_BASE;
 export default function Accomodations() {
   const [LoadBul, showLoading, hideLoading] = useLoading();
   const [accomadations, setAccomadations] = useState([]);
@@ -56,13 +56,13 @@ export default function Accomodations() {
       </div>
 
       <div className="max-w-3xl m-auto mt-10">
-        {accomadations.length > 0 &&
+        {accomadations?.length > 0 &&
           accomadations.map((item) => (
             <div key={item._id}>
               <div className="flex gap-4 mb-4 bg-gray-100 p-4">
                 <div className="w-32 h-32 bg-gray-300">
-                  <img
-                    src={`${backendPath}/uploads/${item.images[0]}`}
+                  <XImg
+                    src={item.images[0]}
                     alt={item.name}
                     className="object-cover w-32 h-32 "
                   />
