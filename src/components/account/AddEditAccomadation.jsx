@@ -8,6 +8,9 @@ import FormWrapper from '../FormWrapper';
 import Facilities from './Facilities';
 import ImageUploader from './ImageUploader';
 import useLoading from '../utils/useLoading';
+import { countries } from '../../assests/constans';
+
+import RichText from './RichText';
 
 export default function AddEditAccomadation() {
   const [LoadBul, showLoading, hideLoading] = useLoading();
@@ -16,10 +19,15 @@ export default function AddEditAccomadation() {
 
   const [perks, setperks] = useState([]);
   const [description, setDescription] = useState('');
-  const [checkin, setCheckin] = useState('');
-  const [checkOut, setCheckOut] = useState('');
+  const [checkin, setCheckin] = useState('8 am');
+  const [checkOut, setCheckOut] = useState('6 pm');
   const [maxGuests, setMaxGuests] = useState('');
   const [perPrice, setPerPrice] = useState('');
+  const [rooms, setRooms] = useState('');
+  const [bed, setBed] = useState('');
+  const [bath, setBath] = useState('');
+
+  const [country, setCountry] = useState('');
   const [uploaderdImgs, setUploaderdImgs] = useState([]);
   const [deletedImages, setDeletedImages] = useState([]);
 
@@ -42,6 +50,10 @@ export default function AddEditAccomadation() {
       uploaderdImgs,
       perPrice,
       deletedImages,
+      rooms,
+      bed,
+      bath,
+      country,
     };
     if (id) {
       showLoading();
@@ -83,6 +95,11 @@ export default function AddEditAccomadation() {
           setMaxGuests(location.maxGuests);
           setUploaderdImgs(location.images);
           setPerPrice(location.perPrice);
+          setCountry(location.country);
+          setRooms(location.rooms);
+          setBed(location.bed);
+          setBath(location.bath);
+
           hideLoading();
         })
         .catch((err) => {
@@ -128,6 +145,19 @@ export default function AddEditAccomadation() {
               onChange={(e) => setAddress(e.target.value)}
             />
           </div>
+          <div className="formgroup">
+            <label>Country</label>
+            <select
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+            >
+              {countries.map((country) => (
+                <option key={country} value={country}>
+                  {country}
+                </option>
+              ))}
+            </select>
+          </div>
 
           {/* image uploader */}
           <ImageUploader
@@ -139,13 +169,18 @@ export default function AddEditAccomadation() {
 
           {/* description */}
           <div className="formgroup">
-            <label>Description</label>
             <textarea
               className="rounded h-40"
               placeholder="Say somthing about accomadeation"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
+
+            {/*   <RichText
+              description={description}
+              setDescription={setDescription}
+              className="border border-2 px-3 py-2 rounded-full w-full border-gray-300"
+            /> */}
           </div>
 
           <Facilities onChange={setperks} perks={perks} />
@@ -183,6 +218,30 @@ export default function AddEditAccomadation() {
                 type="number"
                 value={perPrice}
                 onChange={(e) => setPerPrice(e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Rooms </label>
+              <input
+                type="number"
+                value={rooms}
+                onChange={(e) => setRooms(e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Beds </label>
+              <input
+                type="number"
+                value={bed}
+                onChange={(e) => setBed(e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Bath </label>
+              <input
+                type="number"
+                value={bath}
+                onChange={(e) => setBath(e.target.value)}
               />
             </div>
           </div>

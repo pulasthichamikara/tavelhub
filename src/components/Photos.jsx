@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { HiOutlineXMark, HiPhoto } from 'react-icons/hi2';
+import XImg from '../XImg';
 
 export default function Photos({ accomadation }) {
   const backendPath = process.env.REACT_APP_BACKEND_BASE;
@@ -15,8 +16,8 @@ export default function Photos({ accomadation }) {
         <div className="flex gap-2 lg:gap-4 flex-wrap container mt-4 relative">
           {accomadation?.images && accomadation?.images[0] && (
             <div className="flex-1">
-              <img
-                src={`${backendPath}/uploads/${accomadation?.images[0]}`}
+              <XImg
+                src={accomadation?.images[0]}
                 alt={accomadation?.images[0]}
                 className="rounded-2xl  object-cover max-h-[500px] w-full"
               />
@@ -26,8 +27,8 @@ export default function Photos({ accomadation }) {
             {accomadation?.images?.length > 0 &&
               accomadation?.images?.slice(1, 3).map((item, index) => (
                 <div key={item} className="bg-gray-500 rounded-2xl   flex-1">
-                  <img
-                    src={`${backendPath}/uploads/${item}`}
+                  <XImg
+                    src={item}
                     alt={item.name}
                     className="rounded-2xl object-cover h-full max-h-[500px] w-full"
                   />

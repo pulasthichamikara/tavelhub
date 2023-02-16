@@ -21,6 +21,7 @@ export default function ImageUploader({
       .then((res) => {
         setTimeout(() => {
           setUploaderdImgs([...uploaderdImgs, res.data]);
+          setPhotosUrl('');
         }, 3000);
 
         hideLoading();
