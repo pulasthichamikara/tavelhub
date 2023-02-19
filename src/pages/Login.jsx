@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useLoading from '../components/utils/useLoading';
-
+import { useContext } from 'react';
+import { UserContex } from '../contex/UserContex';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [backendError, setBackendError] = useState('');
   const [LoadBul, showLoading, hideLoading] = useLoading();
+  const { setUser, user } = useContext(UserContex);
   const navigate = useNavigate();
 
   const validateEmail = (email) => {
@@ -43,31 +45,36 @@ export default function Login() {
     if (validateForm()) {
       showLoading();
 
-      try {
-        const response = await axios.post('/user/login', {
-          email,
-          password,
-        });
+      if (validateForm()) {
+        try {
+          const response = await axios.post('/user/login', {
+            email,
+            password,
+          });
 
-        if (response?.data && response.data.userId) {
-          navigate('/');
+          if (response?.data && response.data.token) {
+            localStorage.setItem('userdata', JSON.stringify(response.data));
+            setUser(response.data);
+            hideLoading();
+          }
+          setBackendError('');
+        } catch (error) {
+          console.error(error);
+          if (error.response) {
+            setBackendError(error.response.data.error);
+          } else {
+            setBackendError('Error while login user');
+          }
+          hideLoading();
         }
-      } catch (error) {
-        if (error.response && error.response.data) {
-          const errorMsg = error.response.data;
-          setBackendError(errorMsg);
-        } else {
-          setBackendError('Error while logging in');
-        }
-      } finally {
-        hideLoading();
       }
     }
   };
 
   return (
     <>
-      <div className="bg-gradient-to-r from-yellow-400 via-red-500 to-pri  h-screen flex items-center justify-center flex-col gap-10">
+      {!!user && <Navigate to="/" />}
+      <div className="bg-gradient-to-r from-yellow-400 via-red-500 to-pri h-screen flex items-center justify-center flex-col gap-10">
         <h1 className="text-white mb-6">Login</h1>
         <LoadBul />
         <div className="bg-white p-10 flex flex-col gap-10 items-center rounded-2xl shadow-2xl w-[80%] max-w-2xl">
@@ -114,7 +121,7 @@ export default function Login() {
           <p className="text-sm">
             Don't have an account?{' '}
             <Link to="/register" className="text-pri font-bold">
-              Sign up here
+              Register
             </Link>
           </p>
         </div>

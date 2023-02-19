@@ -202,9 +202,9 @@ export default function Register() {
           {backendError && <span className="text-red-500">{backendError}</span>}
         </form>
 
-        <p>
+        <p className="text-sm">
           Already have an account?{' '}
-          <Link to="/login" className="font-bold">
+          <Link to="/login" className="text-pri font-bold">
             Login
           </Link>
         </p>
