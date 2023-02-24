@@ -8,8 +8,9 @@ import Account from './pages/Account';
 import AddEditAccomadation from './components/account/AddEditAccomadation';
 import axios from 'axios';
 import { useContext } from 'react';
-import { UserContex } from './contex/UserContex';
+import { UserContex } from './contex/UserContext';
 import SinglePage from './pages/SinglePage';
+import SearchResult from './pages/SearchResult';
 
 function App() {
   const { user } = useContext(UserContex);
@@ -31,6 +32,7 @@ function App() {
         <Route path="register" element={<Register />} />
         <Route path="account/:page" element={<Account />} />
         <Route path="room/:id" element={<SinglePage />} />
+        <Route path="place/" element={<SearchResult />} />
         <Route
           path="account/accomadations/add"
           element={<AddEditAccomadation />}

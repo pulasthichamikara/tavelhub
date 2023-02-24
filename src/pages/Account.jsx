@@ -4,7 +4,7 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import Accomodations from '../components/account/Accomodations';
 import Booking from '../components/account/Booking';
 import Profile from '../components/account/Profile';
-import { UserContex } from '../contex/UserContex';
+import { UserContex } from '../contex/UserContext';
 
 export default function Account() {
   const { page } = useParams();

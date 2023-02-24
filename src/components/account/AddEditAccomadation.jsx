@@ -10,8 +10,6 @@ import ImageUploader from './ImageUploader';
 import useLoading from '../utils/useLoading';
 import { countries } from '../../assests/constans';
 
-import RichText from './RichText';
-
 export default function AddEditAccomadation() {
   const [LoadBul, showLoading, hideLoading] = useLoading();
   const [name, setName] = useState('');

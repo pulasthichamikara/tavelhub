@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useLoading from '../components/utils/useLoading';
 import { useContext } from 'react';
-import { UserContex } from '../contex/UserContex';
+import { UserContex } from '../contex/UserContext';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

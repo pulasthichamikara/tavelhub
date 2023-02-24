@@ -1,18 +1,24 @@
 import React, { useContext, useEffect } from 'react';
-import { useState } from 'react';
-
-import axios from 'axios';
-import useLoading from './utils/useLoading';
-
-import Thumbnail from './Thumbnail';
-import Pagination from './Pagination';
 import { useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
+import useLoading from '../components/utils/useLoading';
+import Thumbnail from '../components/Thumbnail';
+import Pagination from '../components/Pagination';
+export default function SearchResult() {
+  const location = useLocation(); // get current page
+  const searchParams = new URLSearchParams(location.search); // get query params
 
-export default function GridAccomadation() {
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
+  const country = searchParams.get('country')
+    ? searchParams.get('country')
+    : '';
+  const guestCount = searchParams.get('guestCount')
+    ? searchParams.get('guestCount')
+    : 1;
+
   const [LoadBul, showLoading, hideLoading] = useLoading();
   const [accamodatios, setAccommodations] = useState([]);
+
   const [page, setPage] = useState(
     searchParams.get('page') ? searchParams.get('page') : 1
   );
@@ -23,11 +29,11 @@ export default function GridAccomadation() {
       try {
         showLoading();
         const response = await axios.get('/location/allaccomadations', {
-          params: { page },
+          params: { country, guestCount, page },
         });
-        setAccommodations(response.data.allLocations);
+        console.log(response.data.allLocations);
         setPages(response.data.pages);
-        console.log(response.data);
+        setAccommodations(response.data.allLocations);
       } catch (error) {
         console.error(error);
       } finally {
@@ -36,15 +42,15 @@ export default function GridAccomadation() {
     }
 
     fetchAccommodations();
-  }, [page]);
+  }, [country, guestCount, page]);
 
   return (
     <div className="mt-6">
       <LoadBul />
-
       <div className="container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-6 gap-y-8">
-        {accamodatios?.length > 0 &&
-          accamodatios.map((item) => <Thumbnail item={item} key={item._id} />)}
+        {accamodatios && accamodatios.length > 0
+          ? accamodatios.map((item) => <Thumbnail item={item} key={item._id} />)
+          : 'No data found'}
       </div>
       <Pagination pages={pages} page={page} setPage={setPage} />
     </div>
