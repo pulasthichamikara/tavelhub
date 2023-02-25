@@ -30,7 +30,7 @@ export default function SinglePage() {
           hideLoading();
         });
     }
-  }, [id]);
+  }, [id, hideLoading, showLoading]);
 
   return (
     <div className="  py-8 h-full mx-h-[100px]">

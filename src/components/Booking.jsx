@@ -4,7 +4,7 @@ import 'react-day-picker/dist/style.css';
 import DateRangeSet from './DateRangeSet';
 import { differenceInCalendarDays } from 'date-fns';
 import axios from 'axios';
-import { LineWave } from 'react-loader-spinner';
+
 import { Link } from 'react-router-dom';
 import useLoading from '../components/utils/useLoading';
 export default function Booking({ perPrice, owner, place }) {

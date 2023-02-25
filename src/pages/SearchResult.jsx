@@ -42,7 +42,7 @@ export default function SearchResult() {
     }
 
     fetchAccommodations();
-  }, [country, guestCount, page]);
+  }, [country, guestCount, page, showLoading, showLoading]);
 
   return (
     <div className="mt-6">
