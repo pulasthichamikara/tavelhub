@@ -4,7 +4,7 @@ import 'react-day-picker/dist/style.css';
 import DateRangeSet from './DateRangeSet';
 import { differenceInCalendarDays } from 'date-fns';
 import axios from 'axios';
-
+import { LineWave } from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
 import useLoading from '../components/utils/useLoading';
 export default function Booking({ perPrice, owner, place }) {
@@ -16,8 +16,8 @@ export default function Booking({ perPrice, owner, place }) {
   const [price, setPrice] = useState(0);
   const [guestCount, setGuestCount] = useState('');
   const [BookingRes, setBookingRes] = useState(null);
-  const [LoadBul, showLoading, hideLoading] = useLoading();
-  useEffect(() => {
+  const [LoadBul, setLoading] = useLoading();
+  /*   useEffect(() => {
     if (checkin && checkout) {
       console.log(typeof checkout);
       const numOfDif = differenceInCalendarDays(
@@ -26,11 +26,11 @@ export default function Booking({ perPrice, owner, place }) {
       );
       setPrice(numOfDif * perPrice * guestCount);
     }
-  }, [checkin, checkout, differenceInCalendarDays, setPrice, guestCount]);
+  }, [checkin, checkout, differenceInCalendarDays, setPrice, guestCount]); */
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    showLoading();
+    setLoading(true);
     const bookingDAta = {
       owner,
       place,
@@ -46,11 +46,11 @@ export default function Booking({ perPrice, owner, place }) {
       .post('/booking', bookingDAta)
       .then((respose) => {
         setBookingRes(respose.data);
-        hideLoading();
+        setLoading(false);
       })
       .catch((err) => {
         console.log('err', err);
-        hideLoading();
+        setLoading(false);
       });
   };
 

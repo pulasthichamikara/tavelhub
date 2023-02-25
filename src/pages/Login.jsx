@@ -9,9 +9,8 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [backendError, setBackendError] = useState('');
-  const [LoadBul, showLoading, hideLoading] = useLoading();
+  const [LoadBul, setLoading] = useLoading();
   const { setUser, user } = useContext(UserContex);
-  const navigate = useNavigate();
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -43,7 +42,7 @@ export default function Login() {
     event.preventDefault();
 
     if (validateForm()) {
-      showLoading();
+      setLoading(true);
 
       if (validateForm()) {
         try {
@@ -55,7 +54,7 @@ export default function Login() {
           if (response?.data && response.data.token) {
             localStorage.setItem('userdata', JSON.stringify(response.data));
             setUser(response.data);
-            hideLoading();
+            setLoading(false);
           }
           setBackendError('');
         } catch (error) {
@@ -65,7 +64,7 @@ export default function Login() {
           } else {
             setBackendError('Error while login user');
           }
-          hideLoading();
+          setLoading(false);
         }
       }
     }

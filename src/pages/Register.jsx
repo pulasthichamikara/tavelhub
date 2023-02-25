@@ -10,7 +10,7 @@ export default function Register() {
   const [passwordStrength, setPasswordStrength] = useState(0);
   const [errors, setErrors] = useState({});
   const [backendError, setBackendError] = useState('');
-  const [LoadBul, showLoading, hideLoading] = useLoading();
+  const [LoadBul, setLoading] = useLoading();
   const navigate = useNavigate();
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -51,7 +51,7 @@ export default function Register() {
     }
 
     setErrors(errors);
-    hideLoading();
+    setLoading(false);
     return isValid;
   };
 
@@ -74,7 +74,7 @@ export default function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    showLoading();
+    setLoading(true);
     if (validateForm()) {
       try {
         const response = await axios.post('/user/register', {
@@ -85,7 +85,7 @@ export default function Register() {
         });
 
         if (response?.data && response.data.userId) {
-          hideLoading();
+          setLoading(false);
           navigate('/login');
         }
         setBackendError('');
@@ -96,7 +96,7 @@ export default function Register() {
         } else {
           setBackendError('Error while creating user');
         }
-        hideLoading();
+        setLoading(false);
       }
     }
   };

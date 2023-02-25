@@ -16,7 +16,7 @@ export default function SearchResult() {
     ? searchParams.get('guestCount')
     : 1;
 
-  const [LoadBul, showLoading, hideLoading] = useLoading();
+  const [LoadBul, setLoading] = useLoading();
   const [accamodatios, setAccommodations] = useState([]);
 
   const [page, setPage] = useState(
@@ -27,7 +27,7 @@ export default function SearchResult() {
   useEffect(() => {
     async function fetchAccommodations() {
       try {
-        showLoading();
+        setLoading(true);
         const response = await axios.get('/location/allaccomadations', {
           params: { country, guestCount, page },
         });
@@ -37,12 +37,12 @@ export default function SearchResult() {
       } catch (error) {
         console.error(error);
       } finally {
-        hideLoading();
+        setLoading(false);
       }
     }
 
     fetchAccommodations();
-  }, [country, guestCount, page, showLoading, showLoading]);
+  }, [country, guestCount, page, setLoading]);
 
   return (
     <div className="mt-6">

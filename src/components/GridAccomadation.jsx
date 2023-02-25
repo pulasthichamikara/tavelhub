@@ -11,7 +11,7 @@ import { useLocation } from 'react-router-dom';
 export default function GridAccomadation() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const [LoadBul, showLoading, hideLoading] = useLoading();
+  const [LoadBul, setLoading] = useLoading();
   const [accamodatios, setAccommodations] = useState([]);
   const [page, setPage] = useState(
     searchParams.get('page') ? searchParams.get('page') : 1
@@ -21,7 +21,7 @@ export default function GridAccomadation() {
   useEffect(() => {
     async function fetchAccommodations() {
       try {
-        showLoading();
+        setLoading(true);
         const response = await axios.get('/location/allaccomadations', {
           params: { page },
         });
@@ -31,12 +31,12 @@ export default function GridAccomadation() {
       } catch (error) {
         console.error(error);
       } finally {
-        hideLoading();
+        setLoading(false);
       }
     }
 
     fetchAccommodations();
-  }, [page]);
+  }, [page, setLoading]);
 
   return (
     <div className="mt-6">

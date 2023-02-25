@@ -4,20 +4,20 @@ import useLoading from '../utils/useLoading';
 
 export default function Booking() {
   const [bookings, setBookings] = useState([]);
-  const [LoadBul, showLoading, hideLoading] = useLoading();
+  const [LoadBul, setLoading] = useLoading();
   useEffect(() => {
-    showLoading();
+    setLoading(true);
     axios
       .get('/booking')
       .then((response) => {
         setBookings(response.data);
-        hideLoading();
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
-        hideLoading();
+        setLoading(false);
       });
-  }, []);
+  }, [setLoading]);
 
   const dateConvert = (iso_time) => {
     let dt = new Date(iso_time);

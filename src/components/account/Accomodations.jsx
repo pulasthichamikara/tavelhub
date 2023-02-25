@@ -9,36 +9,36 @@ import useLoading from '../utils/useLoading';
 import XImg from '../../XImg';
 
 export default function Accomodations() {
-  const [LoadBul, showLoading, hideLoading] = useLoading();
+  const [LoadBul, setLoading] = useLoading();
   const [accomadations, setAccomadations] = useState([]);
   useEffect(() => {
-    showLoading();
+    setLoading(true);
     axios
       .get('/location/myaccomadations')
       .then((respons) => {
         const { myLocations } = respons.data;
         setAccomadations(myLocations);
-        hideLoading();
+        setLoading(false);
       })
       .catch((err) => {
         console.log('respons', err);
-        hideLoading();
+        setLoading(false);
       });
-  }, []);
+  }, [setLoading]);
 
   const deleteItem = (id) => {
-    showLoading();
+    setLoading(true);
     axios
       .delete('/location/myaccomadations', { data: { id } })
       .then((respons) => {
         setAccomadations(
           accomadations.filter((item) => item._id !== respons.data)
         );
-        hideLoading();
+        setLoading(false);
       })
       .catch((err) => {
         console.log('respons', err);
-        hideLoading();
+        setLoading(false);
       });
   };
   return (

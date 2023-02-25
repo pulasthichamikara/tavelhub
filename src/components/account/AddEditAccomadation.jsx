@@ -11,7 +11,7 @@ import useLoading from '../utils/useLoading';
 import { countries } from '../../assests/constans';
 
 export default function AddEditAccomadation() {
-  const [LoadBul, showLoading, hideLoading] = useLoading();
+  const [LoadBul, setLoading] = useLoading();
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
 
@@ -29,7 +29,6 @@ export default function AddEditAccomadation() {
   const [uploaderdImgs, setUploaderdImgs] = useState([]);
   const [deletedImages, setDeletedImages] = useState([]);
 
-  const [errs, setErrs] = useState([]);
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -54,15 +53,15 @@ export default function AddEditAccomadation() {
       country,
     };
     if (id) {
-      showLoading();
+      setLoading(true);
       await axios
         .put(`/location/${id}`, data)
         .then((res) => {
-          hideLoading();
+          setLoading(false);
           navigate('/account/accomadations/');
         })
         .catch((err) => {
-          hideLoading();
+          setLoading(false);
           console.log('errrrr', err);
         });
     } else {
@@ -79,7 +78,7 @@ export default function AddEditAccomadation() {
 
   useEffect(() => {
     if (id) {
-      showLoading();
+      setLoading(true);
       axios
         .get(`/location/${id}`)
         .then((response) => {
@@ -98,14 +97,14 @@ export default function AddEditAccomadation() {
           setBed(location.bed);
           setBath(location.bath);
 
-          hideLoading();
+          setLoading(false);
         })
         .catch((err) => {
           console.log(err);
-          hideLoading();
+          setLoading(false);
         });
     }
-  }, [id]);
+  }, [id, setLoading]);
 
   return (
     <div className="container">

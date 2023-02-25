@@ -11,26 +11,28 @@ import useLoading from '../components/utils/useLoading';
 
 export default function SinglePage() {
   const { id } = useParams();
-  const [LoadBul, showLoading, hideLoading] = useLoading();
+  const [LoadBul, setLoading] = useLoading();
 
   const [accomadation, setAccomadation] = useState({});
   console.log('accomadation', accomadation);
+
   useEffect(() => {
     if (id) {
-      showLoading();
+      setLoading(true);
       axios
         .get(`/location/${id}`)
         .then((response) => {
           const { location } = response.data;
           setAccomadation(location);
-          hideLoading();
         })
         .catch((err) => {
           console.log(err);
-          hideLoading();
+        })
+        .finally(() => {
+          setLoading(false);
         });
     }
-  }, [id, hideLoading, showLoading]);
+  }, [id, setLoading]);
 
   return (
     <div className="  py-8 h-full mx-h-[100px]">

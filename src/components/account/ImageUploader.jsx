@@ -12,10 +12,10 @@ export default function ImageUploader({
   setDeletedImages,
 }) {
   const [photosUrl, setPhotosUrl] = useState([]);
-  const [LoadBul, showLoading, hideLoading] = useLoading();
+  const [LoadBul, setLoading] = useLoading();
   const imageUploadFromUrl = async (e) => {
     e.preventDefault();
-    showLoading();
+    setLoading(true);
     await axios
       .post(`/img-uploaded-by-link`, { photosUrl })
       .then((res) => {
@@ -24,11 +24,11 @@ export default function ImageUploader({
           setPhotosUrl('');
         }, 3000);
 
-        hideLoading();
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
-        hideLoading();
+        setLoading(false);
         setPhotosUrl('');
       });
   };
