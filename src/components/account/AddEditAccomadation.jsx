@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { HiOutlineArrowLeft, HiPlus } from 'react-icons/hi2';
+import { HiOutlineArrowLeft } from 'react-icons/hi2';
 
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import FormWrapper from '../FormWrapper';

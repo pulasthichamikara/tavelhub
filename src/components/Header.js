@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import { IoSearchCircleSharp } from 'react-icons/io5';
-import { GiHamburgerMenu } from 'react-icons/gi';
+
 import { FaUserCircle } from 'react-icons/fa';
 import Logo from './Logo';
 import { UserContex } from '../contex/UserContext';

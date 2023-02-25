@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import 'react-day-picker/dist/style.css';
 import DateRangeSet from './DateRangeSet';
-import { differenceInCalendarDays } from 'date-fns';
+
 import axios from 'axios';
-import { LineWave } from 'react-loader-spinner';
+
 import { Link } from 'react-router-dom';
 import useLoading from '../components/utils/useLoading';
 export default function Booking({ perPrice, owner, place }) {
@@ -13,20 +13,10 @@ export default function Booking({ perPrice, owner, place }) {
   const [customerName, setCustomerName] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
   const [customerTel, setCustomerTel] = useState('');
-  const [price, setPrice] = useState(0);
+  const [price] = useState(0);
   const [guestCount, setGuestCount] = useState('');
   const [BookingRes, setBookingRes] = useState(null);
   const [LoadBul, setLoading] = useLoading();
-  /*   useEffect(() => {
-    if (checkin && checkout) {
-      console.log(typeof checkout);
-      const numOfDif = differenceInCalendarDays(
-        new Date(checkout),
-        new Date(checkin)
-      );
-      setPrice(numOfDif * perPrice * guestCount);
-    }
-  }, [checkin, checkout, differenceInCalendarDays, setPrice, guestCount]); */
 
   const submitHandler = async (e) => {
     e.preventDefault();

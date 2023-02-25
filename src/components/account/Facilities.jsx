@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+
 import { HiWifi } from 'react-icons/hi2';
 import { FaDog, FaSwimmingPool, FaTruckPickup, FaTv } from 'react-icons/fa';
 import { TbToolsKitchen } from 'react-icons/tb';

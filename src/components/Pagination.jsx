@@ -1,5 +1,5 @@
 import React from 'react';
-import { createSearchParams, Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export default function Pagination({ pages, page, setPage }) {
   let items = [];
