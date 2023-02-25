@@ -1,16 +1,15 @@
 {
   "files": {
-    "main.css": "/pulasthichamikara/tavelx/static/css/main.b7486eef.css",
-    "main.js": "/pulasthichamikara/tavelx/static/js/main.34c941a5.js",
-    "static/js/787.891dd677.chunk.js": "/pulasthichamikara/tavelx/static/js/787.891dd677.chunk.js",
-    "static/media/logo.png": "/pulasthichamikara/tavelx/static/media/logo.ac5f8c97f4738212b2ac.png",
-    "index.html": "/pulasthichamikara/tavelx/index.html",
-    "main.b7486eef.css.map": "/pulasthichamikara/tavelx/static/css/main.b7486eef.css.map",
-    "main.34c941a5.js.map": "/pulasthichamikara/tavelx/static/js/main.34c941a5.js.map",
-    "787.891dd677.chunk.js.map": "/pulasthichamikara/tavelx/static/js/787.891dd677.chunk.js.map"
+    "main.css": "/travelhub/static/css/main.b7486eef.css",
+    "main.js": "/travelhub/static/js/main.abd163ff.js",
+    "static/js/787.e41312b6.chunk.js": "/travelhub/static/js/787.e41312b6.chunk.js",
+    "index.html": "/travelhub/index.html",
+    "main.b7486eef.css.map": "/travelhub/static/css/main.b7486eef.css.map",
+    "main.abd163ff.js.map": "/travelhub/static/js/main.abd163ff.js.map",
+    "787.e41312b6.chunk.js.map": "/travelhub/static/js/787.e41312b6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b7486eef.css",
-    "static/js/main.34c941a5.js"
+    "static/js/main.abd163ff.js"
   ]
 }
