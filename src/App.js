@@ -24,9 +24,8 @@ function App() {
   axios.defaults.baseURL = process.env.REACT_APP_BACKEND_BASE;
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/tavelhub">
       <Header />
-
       <Routes>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
