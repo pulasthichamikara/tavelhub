@@ -3,7 +3,6 @@ import { HiOutlineXMark, HiPhoto } from 'react-icons/hi2';
 import XImg from '../XImg';
 
 export default function Photos({ accomadation }) {
-  const backendPath = process.env.REACT_APP_BACKEND_BASE;
   const [showImgs, setShowImgs] = useState(false);
   const handleGallery = () => {
     setShowImgs(!showImgs);
@@ -12,7 +11,6 @@ export default function Photos({ accomadation }) {
   return (
     <div>
       <>
-        {' '}
         <div className="flex gap-2 lg:gap-4 flex-wrap container mt-4 relative">
           {accomadation?.images && accomadation?.images[0] && (
             <div className="flex-1">
@@ -44,24 +42,20 @@ export default function Photos({ accomadation }) {
         </div>
         {/* gallery */}
         {showImgs && (
-          <div className="absolute top-0 bg-black w-full p-10  z-50 ">
-            <div className="container w-full auto relative">
+          <div className="absolute top-0 bg-black w-full p-10  z-50 min-h-fit   ">
+            <div className="container w-full auto relative ">
               <span
-                className="fixed top-8 right-8 btn z-100 text-2xl shadow"
+                className="fixed top-8 right-8 btn z-100   flex justify-center shadow "
                 onClick={handleGallery}
               >
-                <HiOutlineXMark />
+                <HiOutlineXMark className="text-lg w-4 h-6" />
               </span>
             </div>
             <div className=" grid gap-4 container mt-20">
               {accomadation?.images?.length > 0 &&
                 accomadation?.images?.map((item, index) => (
                   <div key={item} className="   flex-1">
-                    <img
-                      src={`${backendPath}/uploads/${item}`}
-                      alt={item.name}
-                      className="w-full"
-                    />
+                    <XImg src={`${item}`} alt={item.name} className="w-full" />
                   </div>
                 ))}
             </div>

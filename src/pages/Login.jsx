@@ -73,7 +73,7 @@ export default function Login() {
   return (
     <>
       {!!user && <Navigate to="/" />}
-      <div className="bg-gradient-to-r from-yellow-400 via-red-500 to-pri h-screen flex items-center justify-center flex-col gap-10">
+      <div className="bg-gradient-to-r from-yellow-400 min-h-screen py-4 via-red-500 to-pri h-screen flex items-center justify-center flex-col gap-10">
         <h1 className="text-white mb-6">Login</h1>
         <LoadBul />
         <div className="bg-white p-10 flex flex-col gap-10 items-center rounded-2xl shadow-2xl w-[80%] max-w-2xl">
