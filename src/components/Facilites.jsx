@@ -50,12 +50,9 @@ export default function Facilites({ perks }) {
   return (
     <div className="">
       <h3 className="font-semibold mb-4">What this place offers</h3>
-      <div className="flex gap-4 ">
+      <div className="flex gap-4 flex-wrap  w-full ">
         {perks.map((item, index) => (
-          <div
-            key={index}
-            className="text-xl px-4 py-2 border rounded-full flex-wrap "
-          >
+          <div key={index} className="text-xl px-4 py-2 border rounded-full ">
             {getItem(item)}
           </div>
         ))}

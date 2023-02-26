@@ -13,7 +13,9 @@ export default function Header() {
     <header className=" border-b border-gray-300  py-4">
       <div className="container flex justify-between items-center">
         <Logo />
-        <SearchBar />
+        <div className="hidden sm:flex">
+          <SearchBar />
+        </div>
         <div className="flex gap-2 items-center justify-center border rounded-full border-gray-300 px-2  h-[40px]">
           <FaUserCircle className="text-2xl text-gray-500 " />
           {!!user ? (

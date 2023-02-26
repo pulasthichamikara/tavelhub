@@ -51,10 +51,13 @@ textarea {
 
 button,
 .btn {
-  @apply px-3 py-2 rounded-full shadow bg-gray-300 cursor-pointer text-center font-semibold;
+  @apply px-3 py-2 rounded-full shadow bg-gray-300 cursor-pointer text-center font-semibold hover:scale-105 transition duration-200;
 }
 .btn-primary {
-  @apply bg-pri  text-white;
+  @apply bg-pri  text-white hover:bg-black transition duration-300;
+}
+link {
+  @apply hover:text-pri transition duration-200;
 }
 
 h1 {

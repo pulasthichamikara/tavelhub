@@ -53,7 +53,10 @@ export default function SearchBar() {
             ))}
           </select>
         </span>
-        <button type="submit" className="p-0 border-0 bg-transparent">
+        <button
+          type="submit"
+          className="p-0 border-0 bg-transparent shadow-none"
+        >
           <IoSearchCircleSharp className=" text-pri text-4xl" />
         </button>
       </div>

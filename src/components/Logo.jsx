@@ -11,7 +11,7 @@ export default function Logo() {
         className="flex justify-center items-center gap-2  rounded text-pri"
       >
         <MdOutlineTravelExplore />
-        <span className=" font-bold">tavelx</span>
+        <span className=" font-bold">tavelhub</span>
       </Link>
     </div>
   );

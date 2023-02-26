@@ -11,6 +11,7 @@ import { useContext } from 'react';
 import { UserContex } from './contex/UserContext';
 import SinglePage from './pages/SinglePage';
 import SearchResult from './pages/SearchResult';
+import SearchBar from './components/SearchBar';
 
 function App() {
   const { user } = useContext(UserContex);
@@ -24,8 +25,9 @@ function App() {
   axios.defaults.baseURL = process.env.REACT_APP_BACKEND_BASE;
 
   return (
-    <BrowserRouter basename="/tavelhub">
+    <BrowserRouter basename="/travelhub">
       <Header />
+
       <Routes>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />

@@ -5,6 +5,7 @@ import axios from 'axios';
 import useLoading from '../components/utils/useLoading';
 import Thumbnail from '../components/Thumbnail';
 import Pagination from '../components/Pagination';
+import SearchBar from '../components/SearchBar';
 export default function SearchResult() {
   const location = useLocation(); // get current page
   const searchParams = new URLSearchParams(location.search); // get query params
@@ -45,7 +46,10 @@ export default function SearchResult() {
   }, [country, guestCount, page, setLoading]);
 
   return (
-    <div className="mt-6">
+    <div className="mt-4">
+      <div className="flex sm:hidden w-full justify-center mb-4 ">
+        <SearchBar />
+      </div>
       <LoadBul />
       <div className="container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-6 gap-y-8">
         {accamodatios && accamodatios.length > 0
