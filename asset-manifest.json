@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "./static/css/main.b7486eef.css",
-    "main.js": "./static/js/main.5e62f69c.js",
-    "static/js/787.e41312b6.chunk.js": "./static/js/787.e41312b6.chunk.js",
-    "index.html": "./index.html",
-    "main.b7486eef.css.map": "./static/css/main.b7486eef.css.map",
-    "main.5e62f69c.js.map": "./static/js/main.5e62f69c.js.map",
-    "787.e41312b6.chunk.js.map": "./static/js/787.e41312b6.chunk.js.map"
+    "main.css": "/tavelhub/static/css/main.b7486eef.css",
+    "main.js": "/tavelhub/static/js/main.de7491ae.js",
+    "static/js/787.e41312b6.chunk.js": "/tavelhub/static/js/787.e41312b6.chunk.js",
+    "index.html": "/tavelhub/index.html",
+    "main.b7486eef.css.map": "/tavelhub/static/css/main.b7486eef.css.map",
+    "main.de7491ae.js.map": "/tavelhub/static/js/main.de7491ae.js.map",
+    "787.e41312b6.chunk.js.map": "/tavelhub/static/js/787.e41312b6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b7486eef.css",
-    "static/js/main.5e62f69c.js"
+    "static/js/main.de7491ae.js"
   ]
 }
