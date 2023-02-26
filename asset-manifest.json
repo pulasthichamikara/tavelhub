@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/tavelhub/static/css/main.b7486eef.css",
-    "main.js": "/tavelhub/static/js/main.de7491ae.js",
-    "static/js/787.e41312b6.chunk.js": "/tavelhub/static/js/787.e41312b6.chunk.js",
-    "index.html": "/tavelhub/index.html",
-    "main.b7486eef.css.map": "/tavelhub/static/css/main.b7486eef.css.map",
-    "main.de7491ae.js.map": "/tavelhub/static/js/main.de7491ae.js.map",
-    "787.e41312b6.chunk.js.map": "/tavelhub/static/js/787.e41312b6.chunk.js.map"
+    "main.css": "/travelhub/static/css/main.b7486eef.css",
+    "main.js": "/travelhub/static/js/main.90fd8160.js",
+    "static/js/787.e41312b6.chunk.js": "/travelhub/static/js/787.e41312b6.chunk.js",
+    "index.html": "/travelhub/index.html",
+    "main.b7486eef.css.map": "/travelhub/static/css/main.b7486eef.css.map",
+    "main.90fd8160.js.map": "/travelhub/static/js/main.90fd8160.js.map",
+    "787.e41312b6.chunk.js.map": "/travelhub/static/js/787.e41312b6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b7486eef.css",
-    "static/js/main.de7491ae.js"
+    "static/js/main.90fd8160.js"
   ]
 }
