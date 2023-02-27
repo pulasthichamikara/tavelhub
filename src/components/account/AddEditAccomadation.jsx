@@ -62,7 +62,7 @@ export default function AddEditAccomadation() {
         })
         .catch((err) => {
           setLoading(false);
-          console.log('errrrr', err);
+          console.log('err', err);
         });
     } else {
       await axios
@@ -71,7 +71,7 @@ export default function AddEditAccomadation() {
           navigate('/account/accomadations/');
         })
         .catch((err) => {
-          console.log('errrrr', err);
+          console.log('err', err);
         });
     }
   };

@@ -42,30 +42,26 @@ export default function Login() {
     event.preventDefault();
 
     if (validateForm()) {
-      setLoading(true);
+      try {
+        const response = await axios.post('/user/login', {
+          email,
+          password,
+        });
 
-      if (validateForm()) {
-        try {
-          const response = await axios.post('/user/login', {
-            email,
-            password,
-          });
-
-          if (response?.data && response.data.token) {
-            localStorage.setItem('userdata', JSON.stringify(response.data));
-            setUser(response.data);
-            setLoading(false);
-          }
-          setBackendError('');
-        } catch (error) {
-          console.error(error);
-          if (error.response) {
-            setBackendError(error.response.data.error);
-          } else {
-            setBackendError('Error while login user');
-          }
+        if (response?.data && response.data.token) {
+          localStorage.setItem('userdata', JSON.stringify(response.data));
+          setUser(response.data);
           setLoading(false);
         }
+        setBackendError('');
+      } catch (error) {
+        console.error(error);
+        if (error.response) {
+          setBackendError(error.response.data.error);
+        } else {
+          setBackendError('Error while login user');
+        }
+        setLoading(false);
       }
     }
   };

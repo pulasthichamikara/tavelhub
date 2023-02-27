@@ -12,6 +12,7 @@ import { UserContex } from './contex/UserContext';
 import SinglePage from './pages/SinglePage';
 import SearchResult from './pages/SearchResult';
 import SearchBar from './components/SearchBar';
+import Footer from './components/Footer';
 
 function App() {
   const { user } = useContext(UserContex);
@@ -27,23 +28,25 @@ function App() {
   return (
     <BrowserRouter basename="/travelhub">
       <Header />
-
-      <Routes>
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="account/:page" element={<Account />} />
-        <Route path="room/:id" element={<SinglePage />} />
-        <Route path="place/" element={<SearchResult />} />
-        <Route
-          path="account/accomadations/add"
-          element={<AddEditAccomadation />}
-        />
-        <Route
-          path="account/accomadations/edit/:id"
-          element={<AddEditAccomadation />}
-        />
-        <Route path="/*" element={<Home />} />
-      </Routes>
+      <div className="min-h-screen ">
+        <Routes>
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="account/:page" element={<Account />} />
+          <Route path="room/:id" element={<SinglePage />} />
+          <Route path="place/" element={<SearchResult />} />
+          <Route
+            path="account/accomadations/add"
+            element={<AddEditAccomadation />}
+          />
+          <Route
+            path="account/accomadations/edit/:id"
+            element={<AddEditAccomadation />}
+          />
+          <Route path="/*" element={<Home />} />
+        </Routes>
+      </div>
+      <Footer />
     </BrowserRouter>
   );
 }

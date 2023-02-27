@@ -12,7 +12,10 @@ export default function Header() {
   return (
     <header className=" border-b border-gray-300  py-4">
       <div className="container flex justify-between items-center">
-        <Logo />
+        <div className="text-pri">
+          {' '}
+          <Logo />
+        </div>
         <div className="hidden sm:flex">
           <SearchBar />
         </div>

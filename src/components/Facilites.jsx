@@ -38,7 +38,7 @@ const fasilities = [
 
 const getItem = (item) => {
   const faItem = fasilities.find((i) => i.item === item);
-  console.log('itm', faItem);
+
   return (
     <div className=" flex gap-4  justify-center items-center">
       {faItem.icon} {faItem.title}{' '}

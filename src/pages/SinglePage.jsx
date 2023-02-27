@@ -15,7 +15,6 @@ export default function SinglePage() {
   const [LoadBul, setLoading] = useLoading();
 
   const [accomadation, setAccomadation] = useState({});
-  console.log('accomadation', accomadation);
 
   useEffect(() => {
     if (id) {
@@ -43,7 +42,7 @@ export default function SinglePage() {
       <LoadBul />
 
       <div className="container">
-        <h1 className="text-3xl">{accomadation.name}</h1>
+        <h1>{accomadation.name}</h1>
         <span className="flex gap2 items-center text-xl">
           <HiOutlineMapPin />
           {accomadation.address}
@@ -88,6 +87,7 @@ export default function SinglePage() {
             perPrice={accomadation.perPrice}
             owner={accomadation.owner}
             place={accomadation._id}
+            maxGuests={accomadation.maxGuests}
           />
         </div>
       </div>

@@ -32,7 +32,7 @@ export default function SearchResult() {
         const response = await axios.get('/location/allaccomadations', {
           params: { country, guestCount, page },
         });
-        console.log(response.data.allLocations);
+
         setPages(response.data.pages);
         setAccommodations(response.data.allLocations);
       } catch (error) {

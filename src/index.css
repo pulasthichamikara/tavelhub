@@ -4,90 +4,90 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Lato', sans-serif;
+@layer base {
+  body {
+    font-family: 'Lato', sans-serif;
+    @apply text-sm sm:text-lg;
+  }
+
+  h {
+    @apply font-bold;
+  }
+  h1 {
+    @apply text-2xl md:text-3xl font-bold;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  label {
+    @apply text-gray-600 block mb-1;
+  }
+
+  input[type='email'],
+  input[type='password'],
+  input[type='number'],
+  input[type='text'],
+  input[type='date'],
+  select,
+  textarea {
+    @apply w-full border border-2 px-3 py-2 rounded-full w-full border-gray-300;
+  }
+
+  .noBorderInput {
+    border: 0px !important;
+    padding: 0px !important;
+    height: 2rem;
+  }
+  .noBorderInput:focus-visible {
+    outline: none;
+  }
+
+  button,
+  .btn {
+    @apply px-3 py-2 rounded-full shadow bg-gray-300 cursor-pointer text-center font-semibold hover:scale-105 transition duration-200;
+  }
+  .btn-primary {
+    @apply bg-pri  text-white hover:bg-black transition duration-300;
+  }
+  link {
+    @apply hover:text-pri transition duration-200;
+  }
+
+  .formgroup {
+    @apply mb-4;
+  }
+
+  hr {
+    @apply my-4;
+  }
+
+  .table-striped tr:nth-child(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .table-striped td {
+    @apply px-4 py-2 border border-gray-400;
+  }
+
+  .table-striped td tr,
+  .table-striped td td {
+    background-color: transparent !important;
+  }
 }
 
-h {
-  @apply font-bold;
-}
-h1 {
-  @apply text-3xl;
-}
-
-h2 {
-  @apply text-2xl;
-}
-
-h3 {
-  @apply text-xl;
-}
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-label {
-  @apply text-gray-600 block mb-1;
-}
-
-input[type='email'],
-input[type='password'],
-input[type='number'],
-input[type='text'],
-input[type='date'],
-select,
-textarea {
-  @apply w-full border border-2 px-3 py-2 rounded-full w-full border-gray-300;
-}
-
-.noBorderInput {
-  border: 0px !important;
-  padding: 0px !important;
-  height: 2rem;
-}
-.noBorderInput:focus-visible {
-  outline: none;
-}
-
-button,
-.btn {
-  @apply px-3 py-2 rounded-full shadow bg-gray-300 cursor-pointer text-center font-semibold hover:scale-105 transition duration-200;
-}
-.btn-primary {
-  @apply bg-pri  text-white hover:bg-black transition duration-300;
-}
-link {
-  @apply hover:text-pri transition duration-200;
-}
-
-h1 {
-  @apply text-5xl font-bold;
-}
-
-.formgroup {
-  @apply mb-4;
-}
-
-hr {
-  @apply my-4;
-}
 .rdp-day_selected,
 .rdp-day_selected:focus-visible,
 .rdp-day_selected:hover {
   color: white;
   opacity: 1;
   background-color: #000000 !important;
-}
-
-.table-striped tr:nth-child(odd) {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-.table-striped td {
-  @apply px-4 py-2 border border-gray-400;
-}
-
-.table-striped td tr,
-.table-striped td td {
-  background-color: transparent !important;
 }

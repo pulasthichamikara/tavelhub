@@ -14,7 +14,6 @@ export default function RichText({ setDescription, description }) {
     const abc = EditorState.createWithContent(
       ContentState.createFromText('3333')
     );
-    console.log(abc);
   }, []);
 
   const onEditorStateChange = (editorState) => {

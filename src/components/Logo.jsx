@@ -8,7 +8,7 @@ export default function Logo() {
     <div className="text-3xl flex">
       <Link
         to={'/'}
-        className="flex justify-center items-center gap-2  rounded text-pri"
+        className="flex justify-center items-center gap-2  rounded "
       >
         <MdOutlineTravelExplore />
         <span className=" font-bold">tavelhub</span>
