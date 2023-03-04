@@ -4,8 +4,8 @@ import Logo from './Logo';
 
 export default function Footer() {
   return (
-    <footer className="p-4 bg-pri shadow md:px-6 md:py-8 text-white">
-      <div className="sm:flex sm:items-center sm:justify-between">
+    <footer className=" p-4 bg-pri shadow md:px-6 md:py-8 text-white">
+      <div className="sm:flex sm:items-center sm:justify-between container">
         <Logo class="text-white" />
         <ul className="flex flex-wrap items-center mb-6 text-sm text-white-500 sm:mb-0 ">
           <li>

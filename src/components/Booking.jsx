@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import 'react-day-picker/dist/style.css';
 import DateRangeSet from './DateRangeSet';
-
+import { differenceInDays } from 'date-fns';
 import axios from 'axios';
 
 import { Link } from 'react-router-dom';
@@ -53,6 +53,14 @@ export default function Booking({ perPrice, owner, place, maxGuests }) {
     return isValid;
   };
 
+  useEffect(() => {
+    const checkinD = new Date(checkin);
+    const checkoutD = new Date(checkout);
+
+    const dateCount = differenceInDays(checkoutD, checkinD);
+    setPrice(perPrice * guestCount * Number(dateCount));
+  }, [checkin, checkout, guestCount, perPrice]);
+
   const submitHandler = async (e) => {
     e.preventDefault();
 
@@ -71,7 +79,6 @@ export default function Booking({ perPrice, owner, place, maxGuests }) {
         customerEmail,
       };
 
-      setPrice(perPrice * guestCount);
       await axios
         .post('/booking', bookingDAta)
         .then((respose) => {
@@ -85,6 +92,20 @@ export default function Booking({ perPrice, owner, place, maxGuests }) {
     }
   };
 
+  const guestHandler = (e) => {
+    setGuestCount(e.target.value);
+    if (e.target.value > maxGuests) {
+      setErrors({
+        ...errors,
+        guest: `Guest count should be ${maxGuests} or less`,
+      });
+    } else {
+      setErrors({
+        ...errors,
+        guest: null,
+      });
+    }
+  };
   return (
     <>
       <LoadBul />
@@ -117,15 +138,18 @@ export default function Booking({ perPrice, owner, place, maxGuests }) {
                   placeholder="Guests"
                   value={guestCount}
                   className="mb-2"
-                  onChange={(e) => setGuestCount(e.target.value)}
+                  onChange={guestHandler}
                   required
                   min={1}
-                  max={maxGuests}
                 />
+                {errors.guest && (
+                  <span className="text-red-500 block ">{errors.guest}</span>
+                )}
               </div>
+
               {checkin && checkout && guestCount > 0 && (
                 <div className="text-2xl border-2 border-dashed border-pri p-2 rounded-lg my-4 text-center">
-                  Total price : <span>$ {perPrice * guestCount}</span>
+                  Total price : <span>$ {price}</span>
                 </div>
               )}
               {checkin && checkout && guestCount && (
